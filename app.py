@@ -46,14 +46,16 @@ class ResNet9(ImageClassificationBase):
     def forward(self, xb):
         return self.network(xb)
 
+
 # --- Download model if not present ---
 def download_model():
     model_path = "FingurePrintTOBloodGroup.pth"
     if not os.path.exists(model_path):
         # Replace this ID with your actual file ID
         file_id = "1X24hSd0qrdLkvspx-VtNgk43RwnA8mnB"
-        url = f"https://drive.google.com/uc?id={1X24hSd0qrdLkvspx-VtNgk43RwnA8mnB}"
+        url = f"https://drive.google.com/uc?id={file_id}"
         gdown.download(url, model_path, quiet=False)
+
     
 
 download_model()
