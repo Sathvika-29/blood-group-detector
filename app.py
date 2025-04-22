@@ -5,6 +5,10 @@ from PIL import Image
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
+import os
+import requests
+import gdown
+
 
 # --- Model Architecture (ResNet9) ---
 class ImageClassificationBase(nn.Module):
@@ -42,6 +46,17 @@ class ResNet9(ImageClassificationBase):
     def forward(self, xb):
         return self.network(xb)
 
+# --- Download model if not present ---
+def download_model():
+    model_path = "FingurePrintTOBloodGroup.pth"
+    if not os.path.exists(model_path):
+        # Replace this ID with your actual file ID
+        file_id = "1X24hSd0qrdLkvspx-VtNgk43RwnA8mnB"
+        url = f"https://drive.google.com/uc?id={1X24hSd0qrdLkvspx-VtNgk43RwnA8mnB}"
+        gdown.download(url, model_path, quiet=False)
+    
+
+download_model()
 # --- Load Model ---
 model_path = 'FingurePrintTOBloodGroup.pth'
 num_classes = 8
