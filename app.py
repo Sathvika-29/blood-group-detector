@@ -18,7 +18,27 @@ model_path = download_model()
 
 # --- Load Full Model ---
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = torch.load(model_path, map_location=device)
+
+# Define your model architecture here (e.g., ResNet9 or your custom model)
+class ResNet9(torch.nn.Module):
+    # Define your architecture (this is a placeholder for the actual model)
+    def __init__(self):
+        super(ResNet9, self).__init__()
+        # Your layers here...
+        pass
+
+    def forward(self, x):
+        # Forward pass logic here
+        return x
+
+# Initialize the model
+model = ResNet9()
+
+# Load the model weights
+state_dict = torch.load(model_path, map_location=device)
+model.load_state_dict(state_dict)
+
+# Move the model to the correct device (GPU or CPU)
 model.to(device)
 model.eval()
 
@@ -55,4 +75,5 @@ if uploaded_file:
 
 st.markdown("---")
 st.caption("Developed with ❤️ using PyTorch and Streamlit")
+
 
